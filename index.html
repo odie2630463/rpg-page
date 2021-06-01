@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<!-- modified from url=https://fuenwang.ml/project/led2net/ -->
+<!-- <html lang="en" class="gr__ee_nycu_edu"> -->
+<html lang="en">
+
+<head>
+<meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="author" content="ginawu">
+<script
+    src="https://code.jquery.com/jquery-3.4.1.js"
+    integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+    crossorigin="anonymous">
+</script>
+
+<title>RPG: Learning Recursive Point Cloud Generation</title>
+
+<!-- CSS includes -->
+<link href="static/asset/bootstrap.min.css" rel="stylesheet">
+<link href="static/asset/css" rel="stylesheet" type="text/css">
+<link href="static/asset/mystyle.css" rel="stylesheet">
+<link href="static/asset/fig_style.css" rel="stylesheet">
+
+<style type="text/css">
+.navbar-center {
+  display: inline-block;
+  float: none;
+  vertical-align: top;
+}
+</style>
+
+
+</head>
+
+<!-- <body data-gr-c-s-loaded="true"> -->
+<body>
+
+<!-- <div class="topnav" id="myTopnav">
+  <a href="#header">Home</a>
+  <a href="#abstract">Abstract</a>
+  <a href="#demo">Demo</a>
+  <a href="#paper">Paper</a>
+  <a href="#code">Code</a>
+  <a href="javascript:void(0);" class="icon" onclick="toggleTopNav()">&#9776;</a>
+</div> -->
+
+
+<div id="header" class="container-fluid">
+    <div class="row">
+        <h1>RPG: Learning Recursive Point Cloud Generation</h1>
+        <div class="authors">
+            <a href="https://odie2630463.github.io" target="_blank">Wei-Jan Ko</a>,
+            <a href="mailto:purelyvivid@gmail.com" target="_blank">Hui-Yu Huang</a>,
+            <a href="mailto:hank.cs08g@nctu.edu.tw" target="_blank">Yu-Liang Kuo</a>,
+            <a href="mailto:charles.en07@nycu.edu.tw" target="_blank">Chen-Yi Chiu</a>,
+            <a href="mailto:leo.eecs06@nctu.edu.tw" target="_blank">Li-Heng Wang</a>,
+            <a href="https://walonchiu.github.io/" target="_blank">Wei-Chen Chiu</a>
+            <!-- <center>(* denotes equal contribution)</center> -->
+
+            <p style="text-align:center;">
+                National Yang Ming Chiao Tung University
+                <br> 
+                <!-- <a href="http://nthu-en.web.nthu.edu.tw/bin/home.php" target="_blank"><img src="./ACCV2018/nthu_logo.png" height="150"></a> -->
+                <!-- &emsp; -->
+            </p>
+        </div>
+    </div>
+</div>
+
+<div class="container" id="links">
+    <center>
+		<div class="mx-auto">
+			<ul class="nav navbar-center">
+				<li class="nav-item text-center" style="display: inline-block;">
+					<a href="https://arxiv.org/abs/2105.14322" class="nav-link">
+						<svg style="width:50px;height:50px;" viewBox="0 0 16 16">
+							<path fill="currentColor" d="M14 4.5V14a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2h5.5L14 4.5zm-3 0A1.5 1.5 0 0 1 9.5 3V1H4a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V4.5h-2z"/>
+  							<path fill="currentColor" d="M4.5 12.5A.5.5 0 0 1 5 12h3a.5.5 0 0 1 0 1H5a.5.5 0 0 1-.5-.5zm0-2A.5.5 0 0 1 5 10h6a.5.5 0 0 1 0 1H5a.5.5 0 0 1-.5-.5zm1.639-3.708 1.33.886 1.854-1.855a.25.25 0 0 1 .289-.047l1.888.974V8.5a.5.5 0 0 1-.5.5H5a.5.5 0 0 1-.5-.5V8s1.54-1.274 1.639-1.208zM6.25 6a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5z"/>
+						</svg><br>
+						Paper
+					</a>
+				<li class="nav-item text-center" style="display: inline-block;">
+					<a href="https://github.com/odie2630463/rpg" class="nav-link">
+						<svg style="width:50px;height:50px" viewBox="0 0 16 16">
+							<path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z">
+						</svg><br>
+						Code
+					</a>
+			</ul>
+		</div>
+    </center>
+</div>
+
+<div class="container" id="abstract">
+    <h2>Abstract</h2>
+    <p style="text-align: justify;">
+    In this paper we propose a novel point cloud generator that is able to reconstruct and generate 3D point clouds composed of semantic parts. Given a latent representation of the target 3D model, the generation starts from a single point and gets expanded recursively to produce the high-resolution point cloud via a sequence of point expansion stages. During the recursive procedure of generation, we not only obtain the coarse-to-fine point clouds for the target 3D model from every expansion stage, but also unsupervisedly discover the semantic segmentation of the target model according to the hierarchical/parent-child relation between the points across expansion stages. Moreover, the expansion modules and other elements used in our recursive generator are mostly sharing weights thus making the overall framework light and efficient. Extensive experiments are conducted to demonstrate that our proposed point cloud generator has comparable or even superior performance on both generation and reconstruction tasks in comparison to various baselines, as well as provides the consistent co-segmentation among 3D instances of the same object class.
+    </p>
+</div>
+
+<div class="container" id="video">
+    <h2>Demo Video</h2>
+	<div class="row align-items-start">
+    <div class="col">
+      <div class="embed-responsive">
+                    <iframe width="600" height="400" src="https://www.youtube.com/embed/cw9apIayw30" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+    </div>
+    <div class="col">
+      <div class="embed-responsive embed-responsive-16by9">
+                    <iframe width="600" height="400" src="https://www.youtube.com/embed/T1NEE60imhs" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>  
+    </div>
+  </div>
+</div>
+
+<div class="container" id="experiment">
+    <h2>Experiments</h2>
+
+    <h3>Reconstruction</h3>
+    <img src="static/fig/reconstruction.jpeg" width="100%">
+
+    <h3>Sample</h3>
+    <img src="static/fig/sample.jpg" width="100%">
+
+    <h3>Interpolation</h3>
+    <img src="static/fig/interpolation.jpg" width="100%">
+
+    <h3>Co-segmentation</h3>
+    <img src="static/fig/co-segmentation.jpg" width="100%">
+
+
+
+</div>
+    
+
+
+<div class="container" id="paper">
+    <h3>Citation</h3>
+    <div class="alert alert-secondary" role="alert">
+    <pre>@misc{ko2021rpg,
+      title={RPG: Learning Recursive Point Cloud Generation}, 
+      author={Wei-Jan Ko and Hui-Yu Huang and Yu-Liang Kuo and Chen-Yi Chiu and Li-Heng Wang and Wei-Chen Chiu},
+      year={2021},
+      eprint={2105.14322},
+      archivePrefix={arXiv},
+      primaryClass={cs.CV}}</pre>
+    </div>
+</div>
+
+<br>
+
+<!-- Javascript includes -->
+<!--
+<script src="static/asset/jquery-1.8.3.min.js"></script>
+<script src="static/asset/mystyle.js"></script>
+<script src="static/asset/bootstrap.min.js"></script>
+<script async="" src="static/asset/analytics.js"></script><script>
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+ (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+ m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+ })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+ga('create', 'UA-98479202-1', 'auto');
+ga('send', 'pageview');
+</script>
+
+<div id="point-jawn" style="z-index: 2147483647;"></div></body></html>
+-->
+
